@@ -4,31 +4,31 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="generator" content="Pelican" />
-        <title>About Python, Data, and Knowledge - Python</title>
-        <link rel="stylesheet" href="/theme/css/main.css" />
+        <title>Блог о Python, Data, and Knowledge - Denis Obrezkov</title>
+        <link rel="stylesheet" href="/ru/../theme/css/main.css" />
 </head>
 
 <body id="index" class="home">
         <header id="banner" class="body">
-                <h1><a href="/">About Python, Data, and Knowledge</a></h1>
+                <h1><a href="/ru/">Блог о Python, Data, and Knowledge</a></h1>
                 <nav><ul>
-                    <li><a href="/category/about.html">About</a></li>
-                    <li class="active"><a href="/category/python.html">Python</a></li>
+                    <li><a href="/ru/category/about.html">About</a></li>
+                    <li><a href="/ru/category/python.html">Python</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="/memoryview-v-python-kak-ispolzovat-i-zachem.html">Memoryview в python: как использовать и зачем</a></h1>
+                    <h1 class="entry-title"><a href="/ru/memoryviews-why-and-how-to-use-them.html">Memoryview в python: как использовать и зачем</a></h1>
 <footer class="post-info">
         <abbr class="published" title="2023-04-10T00:00:00+02:00">
                 Published: Mo 10 April 2023
         </abbr>
 
         <address class="vcard author">
-                By                         <a class="url fn" href="/author/denis-obrezkov.html">Denis Obrezkov</a>
+                By                         <a class="url fn" href="/ru/author/denis-obrezkov.html">Denis Obrezkov</a>
         </address>
-<p>In <a href="/category/python.html">Python</a>.</p>
+<p>In <a href="/ru/category/python.html">Python</a>.</p>
 
 </footer><!-- /.post-info --><h2>Мотивация</h2>
 <p>Иногда бывает необходимо поделиться сырыми данными с другой программой. К примеру, мы работаем с изображением и хотим отправить его в специализированную библиотеку, написанную на C++. При этом пересылка всего изображения может быть слишком излишней и мы хотим обработать его по частям. В этом случае мы можем использовать специальную структуру, которая позволяет эффективно работать с массивами сырых данных без создания копий объекта — memoryview.</p>
@@ -113,22 +113,50 @@ b&#39;bc&#39;
 <h2>Заключение</h2>
 <p>Мы рассмотрели класс memoryview для предоставления доступа к сырой памяти. Обычно он используется, когда необходимо передать в более низкоуровневую библиотеку набор сырых байт, как они представлены в памяти, либо когда мы хотим работать со срезами байтовых объектов, но хотим предотвратить их многократное копирование. Срезы memoryview позволяют сэкономить и память, и время, однако, из-за своей узконаправленности и низкоуровневости используются достаточно редко.</p>                </article>
             </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/ru/ob-etom-bloge.html" rel="bookmark"
+                           title="Permalink to Об этом блоге">Об этом блоге</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2023-04-10T00:00:00+02:00">
+                Published: Mo 10 April 2023
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/ru/author/denis-obrezkov.html">Denis Obrezkov</a>
+        </address>
+<p>In <a href="/ru/category/about.html">About</a>.</p>
+
+</footer><!-- /.post-info -->                <p>Вы попали на стартовую страницу моего блога. Здесь я пишу о науках о данных, науках о знаниях, и об их представлении внутри компьютера и мозга. На деле это выражается в постах о python, R, статистике, логике и т.д. </p>
+<h1>Cодержание блога:</h1>
+<h2>Python</h2>
+<p><a href="/ru/memoryviews-why-and-how-to-use-them.html">Memoryview в python: как использовать и зачем</a></p>
+                <a class="readmore" href="/ru/ob-etom-bloge.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+                </ol><!-- /#posts-list -->
+                </section><!-- /#content -->
         <section id="extras" class="body">
                 <div class="blogroll">
                         <h2>links</h2>
                         <ul>
-                            <li><a href="https://getpelican.com/">Pelican</a></li>
-                            <li><a href="https://www.python.org/">Python.org</a></li>
-                            <li><a href="https://palletsprojects.com/p/jinja/">Jinja2</a></li>
-                            <li><a href="#">You can modify those links in your config file</a></li>
+                            <li><a href="https://t.me/learnpythonforfun">Учим Python (tg)</a></li>
+                            <li><a href="https://vk.com/learnpythonforfun">Учим Python (vk)</a></li>
                         </ul>
                 </div><!-- /.blogroll -->
                 <div class="social">
                         <h2>social</h2>
                         <ul>
 
-                            <li><a href="#">You can add links in your config file</a></li>
-                            <li><a href="#">Another social link</a></li>
+                            <li><a href="https://www.linkedin.com/in/denisobrezkov/">Linkedin</a></li>
                         </ul>
                 </div><!-- /.social -->
         </section><!-- /#extras -->
