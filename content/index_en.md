@@ -1,10 +1,17 @@
-Title: About this blog
-Date: 2023-04-10
-Category: About
+Title: About Me
+Date: 2025-03-01
+Category: About Me
 Lang: en
 
-You are on a start page of my blog on python, data, and knowledge.
+My name is Denis Obrezkov and I am a researcher in the field of knowledge
+management. I am interested in the following areas:
 
-## Python
+- personal information management
+- knowledge management
+- cognitive science
+- human-computer interaction
+- usable security.
 
-Nothing is here yet.
+In my research, I aim to apply experimental methods to tackle problems in
+knowledge management. Additionally, I aim to formulate new theories that will enable us to
+design more effective human-information interactions.

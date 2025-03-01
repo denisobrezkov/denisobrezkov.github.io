@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Knowledge Research - About</title><link href="https://denisobrezkov.github.io/" rel="alternate"></link><link href="https://denisobrezkov.github.io/feeds/about.atom.xml" rel="self"></link><id>https://denisobrezkov.github.io/</id><updated>2023-04-10T00:00:00+02:00</updated><entry><title>About this blog</title><link href="https://denisobrezkov.github.io/about-this-blog.html" rel="alternate"></link><published>2023-04-10T00:00:00+02:00</published><updated>2023-04-10T00:00:00+02:00</updated><author><name>Denis Obrezkov</name></author><id>tag:denisobrezkov.github.io,2023-04-10:/about-this-blog.html</id><content type="html">&lt;p&gt;You are on a start page of my blog on python, data, and knowledge.&lt;/p&gt;
-&lt;h2&gt;Python&lt;/h2&gt;
-&lt;p&gt;Nothing is here yet.&lt;/p&gt;</content><category term="About"></category></entry></feed>

@@ -1,5 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Knowledge Research</title><link href="https://denisobrezkov.github.io/en/" rel="alternate"></link><link href="https://denisobrezkov.github.io/feeds/all.atom.xml" rel="self"></link><id>https://denisobrezkov.github.io/en/</id><updated>2025-03-01T00:00:00+01:00</updated><entry><title>Publications</title><link href="https://denisobrezkov.github.io/en/publications.html" rel="alternate"></link><published>2025-03-01T00:00:00+01:00</published><updated>2025-03-01T00:00:00+01:00</updated><author><name>Denis Obrezkov</name></author><id>tag:denisobrezkov.github.io,2025-03-01:/en/publications.html</id><summary type="html">&lt;p&gt;Here is the list of my publications:&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Denis Obrezkov</title><link href="https://denisobrezkov.github.io/en/" rel="alternate"></link><link href="https://denisobrezkov.github.io/feeds/all.atom.xml" rel="self"></link><id>https://denisobrezkov.github.io/en/</id><updated>2025-03-01T00:00:00+01:00</updated><entry><title>About Me</title><link href="https://denisobrezkov.github.io/en/about-me.html" rel="alternate"></link><published>2025-03-01T00:00:00+01:00</published><updated>2025-03-01T00:00:00+01:00</updated><author><name>Denis Obrezkov</name></author><id>tag:denisobrezkov.github.io,2025-03-01:/en/about-me.html</id><summary type="html">&lt;p&gt;My name is Denis Obrezkov and I am a researcher in the field of knowledge
+management. I am interested in the following areas:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;personal information management&lt;/li&gt;
+&lt;li&gt;knowledge management&lt;/li&gt;
+&lt;li&gt;cognitive science&lt;/li&gt;
+&lt;li&gt;human-computer interaction&lt;/li&gt;
+&lt;li&gt;usable security.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In my research, I aim to apply experimental methods to tackle problems in
+knowledge management. Additionally …&lt;/p&gt;</summary><content type="html">&lt;p&gt;My name is Denis Obrezkov and I am a researcher in the field of knowledge
+management. I am interested in the following areas:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;personal information management&lt;/li&gt;
+&lt;li&gt;knowledge management&lt;/li&gt;
+&lt;li&gt;cognitive science&lt;/li&gt;
+&lt;li&gt;human-computer interaction&lt;/li&gt;
+&lt;li&gt;usable security.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In my research, I aim to apply experimental methods to tackle problems in
+knowledge management. Additionally, I aim to formulate new theories that will enable us to
+design more effective human-information interactions.&lt;/p&gt;</content><category term="About Me"></category></entry><entry><title>Publications</title><link href="https://denisobrezkov.github.io/en/publications.html" rel="alternate"></link><published>2025-03-01T00:00:00+01:00</published><updated>2025-03-01T00:00:00+01:00</updated><author><name>Denis Obrezkov</name></author><id>tag:denisobrezkov.github.io,2025-03-01:/en/publications.html</id><summary type="html">&lt;p&gt;Here is the list of my publications:&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;Obrezkov, D. (2024). Privacy Protection Behaviors from a New Angle: Exploratory Analysis on a Russian Sample. Accepted (with minor revisions) for The 24th Privacy Enhancing Technologies Symposium (PETs), July 15–20, 2024&lt;/code&gt;
 [&lt;a href="https://doi.org/10.56553/popets-2024-0145"&gt;DOI&lt;/a&gt;]
 [&lt;a href="https://denisobrezkov.github.io/en/pdf_pubs/PPB_new_angle.pdf"&gt;PDF&lt;/a&gt;]&lt;/p&gt;
@@ -23,6 +44,4 @@ Computer 2022 (pp. 472-476).&lt;/code&gt;
 [&lt;a href="https://denisobrezkov.github.io/en/pdf_pubs/metaphors_for_AC.pdf"&gt;PDF&lt;/a&gt;]&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;Obrezkov, D., Sohr, K., Malaka, R. (2021). A Category-Based Framework for Privacy-Aware Collaborative Access Control. In: Fischer-Hübner, S., Lambrinoudakis, C., Kotsis, G., Tjoa, A.M., Khalil, I. (eds) Trust, Privacy and Security in Digital Business. TrustBus 2021. Lecture Notes in Computer Science(), vol 12927. Springer, Cham.&lt;/code&gt;
 [&lt;a href="https://doi.org/10.1007/978-3-030-86586-3_9"&gt;DOI&lt;/a&gt;]
-[&lt;a href="https://denisobrezkov.github.io/en/pdf_pubs/BYOD_CBAC.pdf"&gt;PDF&lt;/a&gt;]&lt;/p&gt;</content><category term="Publications"></category></entry><entry><title>About this blog</title><link href="https://denisobrezkov.github.io/en/about-this-blog.html" rel="alternate"></link><published>2023-04-10T00:00:00+02:00</published><updated>2023-04-10T00:00:00+02:00</updated><author><name>Denis Obrezkov</name></author><id>tag:denisobrezkov.github.io,2023-04-10:/en/about-this-blog.html</id><content type="html">&lt;p&gt;You are on a start page of my blog on python, data, and knowledge.&lt;/p&gt;
-&lt;h2&gt;Python&lt;/h2&gt;
-&lt;p&gt;Nothing is here yet.&lt;/p&gt;</content><category term="About"></category></entry></feed>
+[&lt;a href="https://denisobrezkov.github.io/en/pdf_pubs/BYOD_CBAC.pdf"&gt;PDF&lt;/a&gt;]&lt;/p&gt;</content><category term="Publications"></category></entry></feed>
