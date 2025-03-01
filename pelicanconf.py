@@ -1,5 +1,5 @@
 AUTHOR = 'Denis Obrezkov'
-SITENAME = 'Python, Data, and Knowledge'
+SITENAME = 'Knowledge Research'
 SITEURL = ''
 
 PATH = 'content'
@@ -37,7 +37,7 @@ I18N_SUBSITES = {
         'SITENAME': 'Блог о Python, Data, and Knowledge',
         },
     'en': {
-        'SITENAME': 'About Python, Data, and Knowledge'
+        'SITENAME': 'Knowledge Research'
         }
 
     }
