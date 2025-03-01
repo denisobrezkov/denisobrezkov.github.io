@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Блог о Python, Data, and Knowledge - Python</title><link href="https://denisobrezkov.github.io/ru/" rel="alternate"></link><link href="https://denisobrezkov.github.io/feeds/python.atom.xml" rel="self"></link><id>https://denisobrezkov.github.io/ru/</id><updated>2023-04-10T00:00:00+02:00</updated><entry><title>Memoryview в python: как использовать и зачем</title><link href="https://denisobrezkov.github.io/ru/memoryviews-why-and-how-to-use-them.html" rel="alternate"></link><published>2023-04-10T00:00:00+02:00</published><updated>2023-04-10T00:00:00+02:00</updated><author><name>Denis Obrezkov</name></author><id>tag:denisobrezkov.github.io,2023-04-10:/ru/memoryviews-why-and-how-to-use-them.html</id><summary type="html">&lt;h2&gt;Мотивация&lt;/h2&gt;
+&lt;p&gt;Иногда бывает необходимо поделиться сырыми данными с другой программой. К примеру, мы работаем с изображением и хотим отправить его в специализированную библиотеку, написанную на C++. При этом пересылка всего изображения может быть слишком излишней и мы хотим обработать его по частям. В этом случае мы можем использовать специальную структуру …&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Мотивация&lt;/h2&gt;
+&lt;p&gt;Иногда бывает необходимо поделиться сырыми данными с другой программой. К примеру, мы работаем с изображением и хотим отправить его в специализированную библиотеку, написанную на C++. При этом пересылка всего изображения может быть слишком излишней и мы хотим обработать его по частям. В этом случае мы можем использовать специальную структуру, которая позволяет эффективно работать с массивами сырых данных без создания копий объекта — memoryview.&lt;/p&gt;
+&lt;h2&gt;Об объектах memoryview&lt;/h2&gt;
+&lt;p&gt;Объекты memoryview позволяют делиться участками памяти интерпретатора. Объекты memoryview можно получить из объектов, которые поддерживают протокол для работы с программами на языке C (buffer protocol). В python — это bytes и bytearray. Работа с memoryview строится следующим образом: взять подходящий объект, создать из него объект memoryview, создавать срезы из memoryview без привлечения новой памяти.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Пример использования:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;v&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;memoryview&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;b&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="nx"&gt;abcefg&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;type&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;v&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="kd"&gt;class&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="nx"&gt;memoryview&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;v&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="mi"&gt;99&lt;/span&gt;
+
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;v&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;memory&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;at&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x7f454a259000&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;bytes&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;v&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;]))&lt;/span&gt;
+&lt;span class="nx"&gt;b&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="nx"&gt;bc&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Пример сохранения памяти:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Давайте теперь убедимся, что memoryview не выделяет дополнительную память под срезы. Для того, чтобы увидеть, сколько памяти используется, мы будет использовать стандартную библиотеку tracemalloc (https://docs.python.org/3/library/tracemalloc.html):&lt;/p&gt;
+&lt;p&gt;Для начала создадим объект bytes и убедимся, что при создании из него среза типа bytes, новая память выделяется:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;tracemalloc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;start&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="c1"&gt;# create a byte sequence of 1000000 bytes&lt;/span&gt;
+&lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;bytes&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1000000&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# take a snapshot before making a slice&lt;/span&gt;
+&lt;span class="n"&gt;snapshot1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;tracemalloc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;take_snapshot&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="c1"&gt;# slice! type(new_data) == &amp;#39;bytes&amp;#39;, its size is around 500 KB&lt;/span&gt;
+&lt;span class="n"&gt;new_data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;[:&lt;/span&gt;&lt;span class="mi"&gt;500000&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+
+&lt;span class="c1"&gt;# take a snapshot after making the slice&lt;/span&gt;
+&lt;span class="n"&gt;snapshot2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;tracemalloc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;take_snapshot&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;tracemalloc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stop&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+&lt;span class="n"&gt;top_stats&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;snapshot2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;compare_to&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;snapshot1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;lineno&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;[ Top 10 ]&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;stat&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;top_stats&lt;/span&gt;&lt;span class="p"&gt;[:&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
+    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;stat&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;получаем вывод (cpython):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&amp;lt;stdin&amp;gt;:1: size=1465 KiB (+488 KiB), count=2 (+1), average=732 KiB
+/usr/lib/python3.10/tracemalloc.py:423: size=88 B (+88 B), count=2 (+2), average=44 B
+/usr/lib/python3.10/tracemalloc.py:560: size=48 B (+48 B), count=1 (+1), average=48 B
+/usr/lib/python3.10/tracemalloc.py:315: size=40 B (+40 B), count=1 (+1), average=40 B
+&amp;lt;unknown&amp;gt;:0: size=9220 B (+0 B), count=10 (+0), average=922 B
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Можно увидеть, что у нас было выделено дополнительно примерно 488 Кибибайт (488 * 1024 байта). Посмотрим, что будет, если использовать memoryview:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;tracemalloc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;start&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="c1"&gt;# create a byte sequence of 1000000 bytes&lt;/span&gt;
+&lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;bytes&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1000000&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c1"&gt;# take a snapshot before making a slice&lt;/span&gt;
+&lt;span class="n"&gt;snapshot1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;tracemalloc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;take_snapshot&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+&lt;span class="c1"&gt;# create memoryview&lt;/span&gt;
+&lt;span class="n"&gt;mview&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;memoryview&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# slice! type(new_data) == &amp;#39;memoryview&amp;#39;, shouldn&amp;#39;t consume much memory&lt;/span&gt;
+&lt;span class="n"&gt;new_mdata&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;mview&lt;/span&gt;&lt;span class="p"&gt;[:&lt;/span&gt;&lt;span class="mi"&gt;500000&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+
+&lt;span class="c1"&gt;# take a snapshot after making the slice&lt;/span&gt;
+&lt;span class="n"&gt;snapshot2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;tracemalloc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;take_snapshot&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;tracemalloc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stop&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+&lt;span class="n"&gt;top_stats&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;snapshot2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;compare_to&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;snapshot1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;lineno&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;[ Top 10 ]&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;stat&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;top_stats&lt;/span&gt;&lt;span class="p"&gt;[:&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
+    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;stat&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;получаем вывод (cpython):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&amp;lt;stdin&amp;gt;:1: size=977 KiB (+496 B), count=4 (+3), average=244 KiB
+/usr/lib/python3.10/tracemalloc.py:423: size=88 B (+88 B), count=2 (+2), average=44 B
+/usr/lib/python3.10/tracemalloc.py:560: size=48 B (+48 B), count=1 (+1), average=48 B
+/usr/lib/python3.10/tracemalloc.py:315: size=40 B (+40 B), count=1 (+1), average=40 B
+&amp;lt;unknown&amp;gt;:0: size=9220 B (+0 B), count=10 (+0), average=922 B
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;К исходному расходу памяти у нас прибавилось всего около 500 байт, несмотря на создание memoryview размером в 500 тысяч байт. Таким образом, новая память под элементы среза в memoryview не была выделена, мы буквально получаем ссылку на кусок уже существующей памяти.&lt;/p&gt;
+&lt;h2&gt;Заключение&lt;/h2&gt;
+&lt;p&gt;Мы рассмотрели класс memoryview для предоставления доступа к сырой памяти. Обычно он используется, когда необходимо передать в более низкоуровневую библиотеку набор сырых байт, как они представлены в памяти, либо когда мы хотим работать со срезами байтовых объектов, но хотим предотвратить их многократное копирование. Срезы memoryview позволяют сэкономить и память, и время, однако, из-за своей узконаправленности и низкоуровневости используются достаточно редко.&lt;/p&gt;</content><category term="Python"></category></entry></feed>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Denis Obrezkov</title><link href="https://denisobrezkov.github.io/" rel="alternate"></link><link href="https://denisobrezkov.github.io/feeds/all.atom.xml" rel="self"></link><id>https://denisobrezkov.github.io/</id><updated>2025-03-01T00:00:00+01:00</updated><entry><title>About Me</title><link href="https://denisobrezkov.github.io/about-me.html" rel="alternate"></link><published>2025-03-01T00:00:00+01:00</published><updated>2025-03-01T00:00:00+01:00</updated><author><name>Denis Obrezkov</name></author><id>tag:denisobrezkov.github.io,2025-03-01:/about-me.html</id><summary type="html">&lt;p&gt;My name is Denis Obrezkov and I am a researcher in the field of knowledge
+management. I am interested in the following areas:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;personal information management&lt;/li&gt;
+&lt;li&gt;knowledge management&lt;/li&gt;
+&lt;li&gt;cognitive science&lt;/li&gt;
+&lt;li&gt;human-computer interaction&lt;/li&gt;
+&lt;li&gt;usable security.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In my research, I aim to apply experimental methods to tackle problems in
+knowledge management. Additionally …&lt;/p&gt;</summary><content type="html">&lt;p&gt;My name is Denis Obrezkov and I am a researcher in the field of knowledge
+management. I am interested in the following areas:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;personal information management&lt;/li&gt;
+&lt;li&gt;knowledge management&lt;/li&gt;
+&lt;li&gt;cognitive science&lt;/li&gt;
+&lt;li&gt;human-computer interaction&lt;/li&gt;
+&lt;li&gt;usable security.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In my research, I aim to apply experimental methods to tackle problems in
+knowledge management. Additionally, I aim to formulate new theories that will enable us to
+design more effective human-information interactions.&lt;/p&gt;</content><category term="About Me"></category></entry><entry><title>Publications</title><link href="https://denisobrezkov.github.io/publications.html" rel="alternate"></link><published>2025-03-01T00:00:00+01:00</published><updated>2025-03-01T00:00:00+01:00</updated><author><name>Denis Obrezkov</name></author><id>tag:denisobrezkov.github.io,2025-03-01:/publications.html</id><summary type="html">&lt;p&gt;Here is the list of my publications:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Obrezkov, D. (2024). Privacy Protection Behaviors from a New Angle: Exploratory Analysis on a Russian Sample. Accepted (with minor revisions) for The 24th Privacy Enhancing Technologies Symposium (PETs), July 15–20, 2024&lt;/code&gt;
+[&lt;a href="https://doi.org/10.56553/popets-2024-0145"&gt;DOI&lt;/a&gt;]
+[&lt;a href="https://denisobrezkov.github.io/pdf_pubs/PPB_new_angle.pdf"&gt;PDF&lt;/a&gt;]&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Obrezkov, D. (2024). Cognition Behind Access Control: A Usability …&lt;/code&gt;&lt;/p&gt;</summary><content type="html">&lt;p&gt;Here is the list of my publications:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Obrezkov, D. (2024). Privacy Protection Behaviors from a New Angle: Exploratory Analysis on a Russian Sample. Accepted (with minor revisions) for The 24th Privacy Enhancing Technologies Symposium (PETs), July 15–20, 2024&lt;/code&gt;
+[&lt;a href="https://doi.org/10.56553/popets-2024-0145"&gt;DOI&lt;/a&gt;]
+[&lt;a href="https://denisobrezkov.github.io/pdf_pubs/PPB_new_angle.pdf"&gt;PDF&lt;/a&gt;]&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Obrezkov, D. (2024). Cognition Behind Access Control: A Usability Comparison of Rule- and Category-based Mechanisms. Accepted for the 39th International Conference on ICT Systems Security and Privacy Protection (IFIP SEC 2024), Edinburgh, United Kingdom, 12-14 June 2024.&lt;/code&gt;
+[&lt;a href="https://doi.org/10.1007/978-3-031-65175-5_26"&gt;DOI&lt;/a&gt;]
+[&lt;a href="https://denisobrezkov.github.io/pdf_pubs/cognition_behind_AC.pdf"&gt;PDF&lt;/a&gt;]&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Obrezkov, D., Sohr, K. (2024). UCAT: The Uniform Categorization for Access Control. In International Symposium on Foundations and Practice of Security (pp. 3-14). Cham: Springer Nature Switzerland.&lt;/code&gt;
+[&lt;a href="https://doi.org/10.1007/978-3-031-57540-2_1"&gt;DOI&lt;/a&gt;]
+[&lt;a href="https://denisobrezkov.github.io/pdf_pubs/UCAT_AC.pdf"&gt;PDF&lt;/a&gt;]&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Obrezkov, D., Oelen, A., Auer, S. (2023). An Approach to Evaluate User Interfaces in a Scholarly Knowledge Communication Domain. In IFIP Conference on Human-Computer Interaction (pp. 408-412). Cham: Springer Nature Switzerland.&lt;/code&gt;
+[&lt;a href="https://doi.org/10.1007/978-3-031-42293-5_44"&gt;DOI&lt;/a&gt;]
+[&lt;a href="https://denisobrezkov.github.io/pdf_pubs/knowledge_interfaces.pdf"&gt;PDF&lt;/a&gt;]&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Obrezkov, D., Sohr, K., Malaka, R. (2022). ”Do Metaphors Influence the
+Usability of Access Control?”: A Gamified Survey. In Proceedings of Mensch und
+Computer 2022 (pp. 472-476).&lt;/code&gt;
+[&lt;a href="https://doi.org/10.1145/3543758.3547559"&gt;DOI&lt;/a&gt;]
+[&lt;a href="https://denisobrezkov.github.io/pdf_pubs/metaphors_for_AC.pdf"&gt;PDF&lt;/a&gt;]&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Obrezkov, D., Sohr, K., Malaka, R. (2021). A Category-Based Framework for Privacy-Aware Collaborative Access Control. In: Fischer-Hübner, S., Lambrinoudakis, C., Kotsis, G., Tjoa, A.M., Khalil, I. (eds) Trust, Privacy and Security in Digital Business. TrustBus 2021. Lecture Notes in Computer Science(), vol 12927. Springer, Cham.&lt;/code&gt;
+[&lt;a href="https://doi.org/10.1007/978-3-030-86586-3_9"&gt;DOI&lt;/a&gt;]
+[&lt;a href="https://denisobrezkov.github.io/pdf_pubs/BYOD_CBAC.pdf"&gt;PDF&lt;/a&gt;]&lt;/p&gt;</content><category term="Publications"></category></entry></feed>

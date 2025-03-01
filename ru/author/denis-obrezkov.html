@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <title>Блог о Python, Data, and Knowledge - Denis Obrezkov</title>
+        <link rel="stylesheet" href="https://denisobrezkov.github.io/ru/../theme/css/main.css" />
+        <link href="https://denisobrezkov.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Блог о Python, Data, and Knowledge Atom Feed" />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://denisobrezkov.github.io/ru/">Блог о Python, Data, and Knowledge</a></h1>
+                <nav><ul>
+                    <li><a href="https://denisobrezkov.github.io/ru/category/about.html">About</a></li>
+                    <li><a href="https://denisobrezkov.github.io/ru/category/python.html">Python</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="https://denisobrezkov.github.io/ru/memoryviews-why-and-how-to-use-them.html">Memoryview в python: как использовать и зачем</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2023-04-10T00:00:00+02:00">
+                Published: Mo 10 April 2023
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="https://denisobrezkov.github.io/ru/author/denis-obrezkov.html">Denis Obrezkov</a>
+        </address>
+<p>In <a href="https://denisobrezkov.github.io/ru/category/python.html">Python</a>.</p>
+
+</footer><!-- /.post-info --><h2>Мотивация</h2>
+<p>Иногда бывает необходимо поделиться сырыми данными с другой программой. К примеру, мы работаем с изображением и хотим отправить его в специализированную библиотеку, написанную на C++. При этом пересылка всего изображения может быть слишком излишней и мы хотим обработать его по частям. В этом случае мы можем использовать специальную структуру, которая позволяет эффективно работать с массивами сырых данных без создания копий объекта — memoryview.</p>
+<h2>Об объектах memoryview</h2>
+<p>Объекты memoryview позволяют делиться участками памяти интерпретатора. Объекты memoryview можно получить из объектов, которые поддерживают протокол для работы с программами на языке C (buffer protocol). В python — это bytes и bytearray. Работа с memoryview строится следующим образом: взять подходящий объект, создать из него объект memoryview, создавать срезы из memoryview без привлечения новой памяти.</p>
+<p><strong>Пример использования:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;</span><span class="p">&gt;</span><span class="w"> </span><span class="nx">v</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">memoryview</span><span class="p">(</span><span class="nx">b</span><span class="err">&#39;</span><span class="nx">abcefg</span><span class="err">&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;</span><span class="p">&gt;</span><span class="w"> </span><span class="nx">print</span><span class="p">(</span><span class="k">type</span><span class="p">(</span><span class="nx">v</span><span class="p">))</span>
+<span class="p">&lt;</span><span class="kd">class</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">memoryview</span><span class="err">&#39;</span><span class="p">&gt;</span>
+
+<span class="o">&gt;&gt;</span><span class="p">&gt;</span><span class="w"> </span><span class="nx">print</span><span class="p">(</span><span class="nx">v</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="mi">99</span>
+
+<span class="o">&gt;&gt;</span><span class="p">&gt;</span><span class="w"> </span><span class="nx">print</span><span class="p">(</span><span class="nx">v</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">])</span>
+<span class="p">&lt;</span><span class="nx">memory</span><span class="w"> </span><span class="nx">at</span><span class="w"> </span><span class="mh">0x7f454a259000</span><span class="p">&gt;</span>
+
+<span class="o">&gt;&gt;</span><span class="p">&gt;</span><span class="w"> </span><span class="nx">print</span><span class="p">(</span><span class="nx">bytes</span><span class="p">(</span><span class="nx">v</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]))</span>
+<span class="nx">b</span><span class="err">&#39;</span><span class="nx">bc</span><span class="err">&#39;</span>
+</code></pre></div>
+
+<p><strong>Пример сохранения памяти:</strong></p>
+<p>Давайте теперь убедимся, что memoryview не выделяет дополнительную память под срезы. Для того, чтобы увидеть, сколько памяти используется, мы будет использовать стандартную библиотеку tracemalloc (https://docs.python.org/3/library/tracemalloc.html):</p>
+<p>Для начала создадим объект bytes и убедимся, что при создании из него среза типа bytes, новая память выделяется:</p>
+<div class="highlight"><pre><span></span><code><span class="n">tracemalloc</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="c1"># create a byte sequence of 1000000 bytes</span>
+<span class="n">data</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">(</span><span class="mi">1000000</span><span class="p">)</span>
+<span class="c1"># take a snapshot before making a slice</span>
+<span class="n">snapshot1</span> <span class="o">=</span> <span class="n">tracemalloc</span><span class="o">.</span><span class="n">take_snapshot</span><span class="p">()</span>
+<span class="c1"># slice! type(new_data) == &#39;bytes&#39;, its size is around 500 KB</span>
+<span class="n">new_data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:</span><span class="mi">500000</span><span class="p">]</span>
+
+<span class="c1"># take a snapshot after making the slice</span>
+<span class="n">snapshot2</span> <span class="o">=</span> <span class="n">tracemalloc</span><span class="o">.</span><span class="n">take_snapshot</span><span class="p">()</span>
+<span class="n">tracemalloc</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+
+<span class="n">top_stats</span> <span class="o">=</span> <span class="n">snapshot2</span><span class="o">.</span><span class="n">compare_to</span><span class="p">(</span><span class="n">snapshot1</span><span class="p">,</span> <span class="s1">&#39;lineno&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;[ Top 10 ]&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">stat</span> <span class="ow">in</span> <span class="n">top_stats</span><span class="p">[:</span><span class="mi">5</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">stat</span><span class="p">)</span>
+</code></pre></div>
+
+<p>получаем вывод (cpython):</p>
+<div class="highlight"><pre><span></span><code>&lt;stdin&gt;:1: size=1465 KiB (+488 KiB), count=2 (+1), average=732 KiB
+/usr/lib/python3.10/tracemalloc.py:423: size=88 B (+88 B), count=2 (+2), average=44 B
+/usr/lib/python3.10/tracemalloc.py:560: size=48 B (+48 B), count=1 (+1), average=48 B
+/usr/lib/python3.10/tracemalloc.py:315: size=40 B (+40 B), count=1 (+1), average=40 B
+&lt;unknown&gt;:0: size=9220 B (+0 B), count=10 (+0), average=922 B
+</code></pre></div>
+
+<p>Можно увидеть, что у нас было выделено дополнительно примерно 488 Кибибайт (488 * 1024 байта). Посмотрим, что будет, если использовать memoryview:</p>
+<div class="highlight"><pre><span></span><code><span class="n">tracemalloc</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="c1"># create a byte sequence of 1000000 bytes</span>
+<span class="n">data</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">(</span><span class="mi">1000000</span><span class="p">)</span>
+
+<span class="c1"># take a snapshot before making a slice</span>
+<span class="n">snapshot1</span> <span class="o">=</span> <span class="n">tracemalloc</span><span class="o">.</span><span class="n">take_snapshot</span><span class="p">()</span>
+
+<span class="c1"># create memoryview</span>
+<span class="n">mview</span> <span class="o">=</span> <span class="nb">memoryview</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="c1"># slice! type(new_data) == &#39;memoryview&#39;, shouldn&#39;t consume much memory</span>
+<span class="n">new_mdata</span> <span class="o">=</span> <span class="n">mview</span><span class="p">[:</span><span class="mi">500000</span><span class="p">]</span>
+
+<span class="c1"># take a snapshot after making the slice</span>
+<span class="n">snapshot2</span> <span class="o">=</span> <span class="n">tracemalloc</span><span class="o">.</span><span class="n">take_snapshot</span><span class="p">()</span>
+<span class="n">tracemalloc</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+
+<span class="n">top_stats</span> <span class="o">=</span> <span class="n">snapshot2</span><span class="o">.</span><span class="n">compare_to</span><span class="p">(</span><span class="n">snapshot1</span><span class="p">,</span> <span class="s1">&#39;lineno&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;[ Top 10 ]&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">stat</span> <span class="ow">in</span> <span class="n">top_stats</span><span class="p">[:</span><span class="mi">5</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">stat</span><span class="p">)</span>
+</code></pre></div>
+
+<p>получаем вывод (cpython):</p>
+<div class="highlight"><pre><span></span><code>&lt;stdin&gt;:1: size=977 KiB (+496 B), count=4 (+3), average=244 KiB
+/usr/lib/python3.10/tracemalloc.py:423: size=88 B (+88 B), count=2 (+2), average=44 B
+/usr/lib/python3.10/tracemalloc.py:560: size=48 B (+48 B), count=1 (+1), average=48 B
+/usr/lib/python3.10/tracemalloc.py:315: size=40 B (+40 B), count=1 (+1), average=40 B
+&lt;unknown&gt;:0: size=9220 B (+0 B), count=10 (+0), average=922 B
+</code></pre></div>
+
+<p>К исходному расходу памяти у нас прибавилось всего около 500 байт, несмотря на создание memoryview размером в 500 тысяч байт. Таким образом, новая память под элементы среза в memoryview не была выделена, мы буквально получаем ссылку на кусок уже существующей памяти.</p>
+<h2>Заключение</h2>
+<p>Мы рассмотрели класс memoryview для предоставления доступа к сырой памяти. Обычно он используется, когда необходимо передать в более низкоуровневую библиотеку набор сырых байт, как они представлены в памяти, либо когда мы хотим работать со срезами байтовых объектов, но хотим предотвратить их многократное копирование. Срезы memoryview позволяют сэкономить и память, и время, однако, из-за своей узконаправленности и низкоуровневости используются достаточно редко.</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="https://denisobrezkov.github.io/ru/ob-etom-bloge.html" rel="bookmark"
+                           title="Permalink to Об этом блоге">Об этом блоге</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2023-04-10T00:00:00+02:00">
+                Published: Mo 10 April 2023
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="https://denisobrezkov.github.io/ru/author/denis-obrezkov.html">Denis Obrezkov</a>
+        </address>
+<p>In <a href="https://denisobrezkov.github.io/ru/category/about.html">About</a>.</p>
+
+</footer><!-- /.post-info -->                <p>Вы попали на стартовую страницу моего блога. Здесь я пишу о науках о данных, науках о знаниях, и об их представлении внутри компьютера и мозга. На деле это выражается в постах о python, R, статистике, логике и т.д. </p>
+<h1>Cодержание блога:</h1>
+<h2>Python</h2>
+<p><a href="/ru/memoryviews-why-and-how-to-use-them.html">Memoryview в python: как использовать и зачем</a></p>
+                <a class="readmore" href="https://denisobrezkov.github.io/ru/ob-etom-bloge.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+                </ol><!-- /#posts-list -->
+                </section><!-- /#content -->
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://t.me/learnpythonforfun">Учим Python (tg)</a></li>
+                            <li><a href="https://vk.com/learnpythonforfun">Учим Python (vk)</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="https://denisobrezkov.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="https://www.linkedin.com/in/denisobrezkov/">Linkedin</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>
